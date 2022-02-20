@@ -1,0 +1,627 @@
+[
+    {
+        "id": "cad6e41fa82c02e7",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f6d88d0703c4de83",
+        "type": "template",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "$EmailTo = \"{{toemail}}\"\n$EmailFrom = \"{{fromemail}}\"\n$Subject = \"{{subject}}\" \n$Body = \"{{body}}\" \n$SMTPServer = \"{{smtpserver}}\" \n$SMTPPort = \"{{smtmpport}}\"\n$SMTPMessage = New-Object System.Net.Mail.MailMessage($EmailFrom,$EmailTo,$Subject,$Body)\n$SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, $SMTPPort) \n$SMTPClient.EnableSsl = $true \n$SMTPClient.Credentials = New-Object System.Net.NetworkCredential(\"{{loginuser}}\", \"{{loginpass}}\"); \n$SMTPClient.Send($SMTPMessage)",
+        "output": "str",
+        "x": 960,
+        "y": 600,
+        "wires": [
+            [
+                "335db61d32f1f96d",
+                "9c398a317d7a3ed9"
+            ]
+        ]
+    },
+    {
+        "id": "335db61d32f1f96d",
+        "type": "powershell",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "x": 1150,
+        "y": 540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9c398a317d7a3ed9",
+        "type": "debug",
+        "z": "cad6e41fa82c02e7",
+        "name": "simple mail output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "1ae4260a6c5f7bf7",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "Username",
+        "tooltip": "user name for login, might be same as email",
+        "group": "aa4a84804a7816cb",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "loginuser",
+        "topicType": "str",
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "8f448002082c0ff9",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "To email",
+        "tooltip": "type recipient",
+        "group": "aa4a84804a7816cb",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "toemail",
+        "topicType": "str",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "4e0ef328e2c9f8ac",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "Body",
+        "tooltip": "Type the body of the email",
+        "group": "aa4a84804a7816cb",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "body",
+        "topicType": "str",
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "ff3dee1a63b9b705",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "Subject",
+        "tooltip": "email subject",
+        "group": "aa4a84804a7816cb",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "subject",
+        "topicType": "str",
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "f18629dc637019d0",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "SMTP server",
+        "tooltip": "",
+        "group": "aa4a84804a7816cb",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "smtpserver",
+        "topicType": "str",
+        "x": 370,
+        "y": 400,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "119ae9b47af15d03",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "port",
+        "tooltip": "usually 587",
+        "group": "aa4a84804a7816cb",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "smtpport",
+        "topicType": "str",
+        "x": 390,
+        "y": 440,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "249e0de028dce1dc",
+        "type": "function",
+        "z": "cad6e41fa82c02e7",
+        "name": "flow variables",
+        "func": "var flowname = msg.topic;\nvar data = msg.payload;\nflow.set(flowname,data);\n\nvar check = flow.get(flowname);\n\nmsg.payload = flowname + \";\" + check;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "9e8066915417518a"
+            ]
+        ]
+    },
+    {
+        "id": "9e8066915417518a",
+        "type": "debug",
+        "z": "cad6e41fa82c02e7",
+        "name": "flowcheck",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1fe426c03ae52ff4",
+        "type": "function",
+        "z": "cad6e41fa82c02e7",
+        "name": "get flow variables",
+        "func": "msg.toemail = flow.get(\"toemail\");\nmsg.fromemail = flow.get(\"fromemail\");\nmsg.smtpport = flow.get(\"smtpport\");\nmsg.smtpserver = flow.get(\"smtpserver\");\nmsg.subject = flow.get(\"subject\");\nmsg.body = flow.get(\"body\");\nmsg.loginuser = flow.get(\"loginuser\");\nmsg.loginpass = flow.get(\"loginpass\");\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 600,
+        "wires": [
+            [
+                "f6d88d0703c4de83",
+                "5f808b71083b1588"
+            ]
+        ]
+    },
+    {
+        "id": "be491af772a2c7c9",
+        "type": "ui_button",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "group": "87be8b8d25d85bd9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Send basic email",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 600,
+        "wires": [
+            [
+                "76859b957dd2db62"
+            ]
+        ]
+    },
+    {
+        "id": "76859b957dd2db62",
+        "type": "delay",
+        "z": "cad6e41fa82c02e7",
+        "name": "delay",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 600,
+        "wires": [
+            [
+                "1fe426c03ae52ff4"
+            ]
+        ],
+        "info": "this is put here to brigde de 300 ms delay of the text inputs"
+    },
+    {
+        "id": "5f808b71083b1588",
+        "type": "debug",
+        "z": "cad6e41fa82c02e7",
+        "name": "check flow variables",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a028f7ede88a233c",
+        "type": "inject",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "be491af772a2c7c9"
+            ]
+        ]
+    },
+    {
+        "id": "6c902f0a0cc8eb59",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "From email",
+        "tooltip": "sender of email",
+        "group": "aa4a84804a7816cb",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "fromemail",
+        "topicType": "str",
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "4547c92c544b6fbe",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "Password",
+        "tooltip": "Password for email",
+        "group": "aa4a84804a7816cb",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "loginpass",
+        "topicType": "str",
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "64d25c339910b270",
+        "type": "template",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "$EmailTo = \"{{toemail}}\"\n$EmailFrom = \"{{fromemail}}\"\n$Subject = \"{{subject}}\" \n$Body = \"{{body}}\" \n$SMTPServer = \"{{smtpserver}}\" \n$filenameAndPath = \"{{filepath}}\"\n$SMTPPort = \"{{smtmpport}}\"\n$filenameAndPath = \"{{filepath}}\"\n$attachment = New-Object System.Net.Mail.Attachment($filenameAndPath)\n$SMTPMessage = New-Object System.Net.Mail.MailMessage($EmailFrom,$EmailTo,$Subject,$Body)\n$SMTPMessage.Attachments.Add($attachment)\n$SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, $SMTPPort) \n$SMTPClient.EnableSsl = $true \n$SMTPClient.Credentials = New-Object System.Net.NetworkCredential(\"{{loginuser}}\", \"{{loginpass}}\"); \n$SMTPClient.Send($SMTPMessage)",
+        "output": "str",
+        "x": 940,
+        "y": 760,
+        "wires": [
+            [
+                "5a1943d060116cca",
+                "e71d8383d207356d"
+            ]
+        ]
+    },
+    {
+        "id": "5a1943d060116cca",
+        "type": "powershell",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "x": 1130,
+        "y": 700,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e71d8383d207356d",
+        "type": "debug",
+        "z": "cad6e41fa82c02e7",
+        "name": "mail with attach output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "889aa830ce7d9132",
+        "type": "function",
+        "z": "cad6e41fa82c02e7",
+        "name": "get flow variables",
+        "func": "msg.toemail = flow.get(\"toemail\");\nmsg.fromemail = flow.get(\"fromemail\");\nmsg.smtpport = flow.get(\"smtpport\");\nmsg.smtpserver = flow.get(\"smtpserver\");\nmsg.subject = flow.get(\"subject\");\nmsg.body = flow.get(\"body\");\nmsg.loginuser = flow.get(\"loginuser\");\nmsg.loginpass = flow.get(\"loginpass\");\nmsg.filepath = flow.get(\"filepath\");\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 760,
+        "wires": [
+            [
+                "64d25c339910b270",
+                "63a45942018acc19"
+            ]
+        ]
+    },
+    {
+        "id": "9d379b9a1a8df839",
+        "type": "ui_button",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "group": "87be8b8d25d85bd9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Send with attachment",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 360,
+        "y": 760,
+        "wires": [
+            [
+                "3802118af87e8660"
+            ]
+        ]
+    },
+    {
+        "id": "3802118af87e8660",
+        "type": "delay",
+        "z": "cad6e41fa82c02e7",
+        "name": "delay",
+        "pauseType": "delay",
+        "timeout": "300",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 550,
+        "y": 760,
+        "wires": [
+            [
+                "889aa830ce7d9132"
+            ]
+        ],
+        "info": "this is put here to brigde de 300 ms delay of the text inputs"
+    },
+    {
+        "id": "63a45942018acc19",
+        "type": "debug",
+        "z": "cad6e41fa82c02e7",
+        "name": "check flow variables",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "373844fd99f2c18b",
+        "type": "inject",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 760,
+        "wires": [
+            [
+                "9d379b9a1a8df839"
+            ]
+        ]
+    },
+    {
+        "id": "242a4f4ceb76b0a7",
+        "type": "ui_text_input",
+        "z": "cad6e41fa82c02e7",
+        "name": "",
+        "label": "Attachment",
+        "tooltip": "Type the FULL filepath i.e. \"C:\\Users\\<USER>\\Desktop\\attachment.pdf\"",
+        "group": "aa4a84804a7816cb",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "filepath",
+        "topicType": "str",
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "249e0de028dce1dc"
+            ]
+        ]
+    },
+    {
+        "id": "aa4a84804a7816cb",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "9992690cb02c3365",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "87be8b8d25d85bd9",
+        "type": "ui_group",
+        "name": "Commands",
+        "tab": "9992690cb02c3365",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "9992690cb02c3365",
+        "type": "ui_tab",
+        "name": "mail",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
